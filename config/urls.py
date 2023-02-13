@@ -30,6 +30,7 @@ urlpatterns = [
 #     accounts/reset/<uidb64>/<token>/ [name='password_reset_confirm']
 #     accounts/reset/done/ [name='password_reset_complete']
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('accounts.urls')),
 
     path('', include('pages.urls'))
 ]
