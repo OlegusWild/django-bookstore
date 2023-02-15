@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # third-party packages
+    'crispy_forms',
+
     # Custom
     'accounts',
     'pages'
@@ -148,3 +151,5 @@ STATICFILES_FINDERS = [ # new
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",  # in subdirs like pages/static
 ]
 
+# django-crispy-forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
