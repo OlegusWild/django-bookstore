@@ -1,13 +1,20 @@
+<!-- This gives the reference to static files specified at STATIC_URL -->
+{% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <title>{% block title %}Bookstore{% endblock title %}</title>
+        <!-- Attaching styles css -->
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
     </head>
     <body>
         <div class="container">
             {% block content %}
             {% endblock content %}
         </div>
+        <!-- Test JS -->
+        <script src="{% static 'js/base.js' %}"></script>
     </body>
 </html>

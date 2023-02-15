@@ -139,3 +139,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# specifying for local development!
+STATICFILES_DIRS = [str(BASE_DIR.joinpath('static')),]
+# for colelcting static for production
+STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
+STATICFILES_FINDERS = [ # new
+    "django.contrib.staticfiles.finders.FileSystemFinder",  # looks up in STATICFILES_DIRS
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",  # in subdirs like pages/static
+]
+
