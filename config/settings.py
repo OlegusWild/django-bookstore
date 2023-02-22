@@ -151,6 +151,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 
+DEFAULT_FROM_EMAIL = 'admin@djangobookstore.com'
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 

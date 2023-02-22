@@ -10,3 +10,12 @@ h1 {
 .container {
     padding-bottom: 20px;
 }
+
+.login-reset {
+    display: flex;
+}
+
+.login-forgot-pass {
+    margin-left: 40px;
+    margin-top: 15px;
+}
