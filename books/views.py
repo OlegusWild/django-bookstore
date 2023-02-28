@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.forms import BaseModelForm
 from django.urls import reverse
 from django.shortcuts import HttpResponse, redirect
+from django.core.exceptions import PermissionDenied
 from django.contrib.auth.mixins import UserPassesTestMixin
 
 from .models import Book, Review
@@ -43,5 +44,8 @@ class ReviewCreate(CreateView):
 
 def delete_review(request, book_uuid, review_id):
     review = Review.objects.get(id=review_id)
+    if not request.user.is_superuser and review.author != request.user:
+        raise PermissionDenied()
+
     review.delete()
     return redirect(reverse('book_detailed', args=[str(book_uuid)]))
