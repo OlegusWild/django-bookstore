@@ -9,4 +9,10 @@
         <h2><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h2>
     </div>
     {% endfor %}
+
+    {% if user.is_superuser %}
+        <p>
+            <a href="{% url 'add_book' %}">Add a New Book</a>
+        </p>
+    {% endif %}
 {% endblock content %}

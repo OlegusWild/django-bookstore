@@ -7,5 +7,17 @@
         <h2><a href="">{{ book.title }}</a></h2>
         <p>Author: {{ book.author }}</p>
         <p>Price: {{ book.price }}</p>
+
+        <div>
+            <h3>Reviews</h3>
+            <ul>
+                {% for review in book.reviews.all %}
+                    <li><p>{{ review.review }} (<strong>{{ review.author }}</strong>) {% if user.is_superuser or user == review.author %} | <a class="btn btn-danger ml-2" href="{% url 'delete_review' review.book.pk review.pk %}">Delete</a>{% endif %} </p></li>
+                {% endfor %}
+            </ul>
+            <p>
+                <a href="{% url 'add_review' book.pk %}">Leave a review!</a>
+            </p>
+        </div>
     </div>
 {% endblock content %}
