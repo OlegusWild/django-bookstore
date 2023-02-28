@@ -189,6 +189,8 @@ STATICFILES_FINDERS = [ # new
     "django.contrib.staticfiles.finders.FileSystemFinder",  # looks up in STATICFILES_DIRS
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",  # in subdirs like pages/static
 ]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
 
 # django-crispy-forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

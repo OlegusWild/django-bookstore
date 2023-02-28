@@ -1,7 +1,7 @@
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from django.forms import BaseModelForm
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.shortcuts import HttpResponse, redirect
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.mixins import UserPassesTestMixin
@@ -12,7 +12,25 @@ from .models import Book, Review
 class BookCreate(UserPassesTestMixin, CreateView):
     model = Book
     template_name = 'books/book_create.html'
-    fields = ('title', 'author', 'price')
+    fields = ('title', 'cover', 'author', 'price')
+
+    def test_func(self) -> bool:
+        return self.request.user.is_superuser
+
+
+class BookUpdate(UserPassesTestMixin, UpdateView):
+    model = Book
+    template_name = 'books/book_update.html'
+    fields = ('title', 'cover', 'author', 'price')
+
+    def test_func(self) -> bool:
+        return self.request.user.is_superuser
+
+
+class BookDelete(UserPassesTestMixin, DeleteView):
+    model = Book
+    template_name = 'books/book_delete_confirm.html'
+    success_url = reverse_lazy('book_list')
 
     def test_func(self) -> bool:
         return self.request.user.is_superuser
