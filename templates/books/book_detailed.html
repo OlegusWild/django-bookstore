@@ -1,5 +1,7 @@
 {% extends '_base.html' %}
 
+{% load books_extra %}
+
 {% block title %}{{ book.title }}{% endblock title %}
 
 {% block content %}
@@ -11,7 +13,7 @@
         <p>Author: {{ book.author }}</p>
         <p>Price: {{ book.price }}</p>
 
-        {% if user.is_superuser %}
+        {% if user.is_superuser or user|has_group:"Moderator" %}
             <p>
                 <a href="{% url 'edit_book' book.pk %}">Edit...</a>
             </p>
@@ -24,7 +26,7 @@
             <h3>Reviews</h3>
             <ul>
                 {% for review in book.reviews.all %}
-                    <li><p>{{ review.review }} (<strong>{{ review.author }}</strong>) {% if user.is_superuser or user == review.author %}<a class="btn btn-danger ml-2" href="{% url 'delete_review' review.book.pk review.pk %}">Delete</a>{% endif %} </p></li>
+                    <li><p>{{ review.review }} (<strong>{{ review.author }}</strong>) {% if user.is_superuser or user|has_group:"Moderator" or user == review.author %}<a class="btn btn-danger ml-2" href="{% url 'delete_review' review.book.pk review.pk %}">Delete</a>{% endif %} </p></li>
                 {% endfor %}
             </ul>
             <p>

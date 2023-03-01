@@ -16,6 +16,11 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     cover = models.ImageField(upload_to='covers/', blank=True)
 
+    class Meta:
+        permissions = [
+            ('privilegios_group', 'Can read all books')
+        ]
+
     def get_absolute_url(self):
         return reverse('book_detailed', args=[str(self.id)])
 

@@ -33,7 +33,7 @@
                             href="{% url 'account_signup' %}">Sign Up</a>
                     {% endif %}
 
-                    {% if user.is_superuser %}
+                    {% if user.is_superuser or user.is_staff %}
                         <a class="p-2 text-dark" href="{% url 'admin:index' %}">Admin</a>
                     {% endif %}
                 </nav>
